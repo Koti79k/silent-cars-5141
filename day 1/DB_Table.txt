@@ -1,0 +1,59 @@
+create table student
+(
+stdID int primary key auto_increment,
+StdName varchar(12),
+mobile varchar(12),
+email varchar(15),
+password varchar(10)
+);
+
+create table course
+(
+courseId int primary key auto_increment,
+courseName varchar(12),
+coursefee int,
+courseSeat int,
+courseDuration varchar(15)
+);
+
+
+create table course_student
+(
+courseId int,
+stdID int,
+foreign key (courseId) references course(courseId),
+foreign key (stdID) references student(stdID)
+);
+
+mysql> desc student;
++----------+-------------+------+-----+---------+----------------+
+| Field    | Type        | Null | Key | Default | Extra          |
++----------+-------------+------+-----+---------+----------------+
+| stdID    | int         | NO   | PRI | NULL    | auto_increment |
+| StdName  | varchar(12) | YES  |     | NULL    |                |
+| mobile   | varchar(12) | YES  |     | NULL    |                |
+| email    | varchar(15) | YES  |     | NULL    |                |
+| password | varchar(10) | YES  |     | NULL    |                |
++----------+-------------+------+-----+---------+----------------+
+5 rows in set (0.02 sec)
+
+mysql> desc course;
++----------------+-------------+------+-----+---------+----------------+
+| Field          | Type        | Null | Key | Default | Extra          |
++----------------+-------------+------+-----+---------+----------------+
+| courseId       | int         | NO   | PRI | NULL    | auto_increment |
+| courseName     | varchar(12) | YES  |     | NULL    |                |
+| coursefee      | int         | YES  |     | NULL    |                |
+| courseSeat     | int         | YES  |     | NULL    |                |
+| courseDuration | varchar(15) | YES  |     | NULL    |                |
++----------------+-------------+------+-----+---------+----------------+
+5 rows in set (0.00 sec)
+
+mysql> desc course_student;
++----------+------+------+-----+---------+-------+
+| Field    | Type | Null | Key | Default | Extra |
++----------+------+------+-----+---------+-------+
+| courseId | int  | YES  | MUL | NULL    |       |
+| stdID    | int  | YES  | MUL | NULL    |       |
++----------+------+------+-----+---------+-------+
+2 rows in set (0.00 sec)

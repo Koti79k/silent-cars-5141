@@ -10,7 +10,7 @@
 * Students
 
 
-<b>Roles for Administrator :</b>
+<b>Role of Administrator :</b>
 
 * Add a new Courses.
 * Update Fees of course.
@@ -21,7 +21,7 @@
 * Update total seats of a batch.
 * View the students of every batch. 
 
-<b>Roles for a Student:</b>
+<b>Role of a Student:</b>
 
 * Register himself in a course with a username and password (email should be the username)
 * can update this details.

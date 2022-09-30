@@ -10,7 +10,7 @@
 * Students
 
 
-<b>Role of Administrator :</b>
+<b>Role of a Administrator :</b>
 
 * Add a new Courses.
 * Update Fees of course.

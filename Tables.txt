@@ -1,0 +1,158 @@
+mysql> create database project2;
+Query OK, 1 row affected (0.01 sec)
+
+mysql> use project2;
+Database changed
+
+create table course
+(
+courseId int primary key auto_increment,
+courseName varchar(12),
+coursefee int,
+courseSeat int,
+courseDuration varchar(15)
+);
+
+/*============== Step 1: Add a new Courses  ================*/
+mysql> select * from course;
++----------+------------+-----------+------------+----------------+
+| courseId | courseName | coursefee | courseSeat | courseDuration |
++----------+------------+-----------+------------+----------------+
+|        1 | Java       |      1000 |         20 | 6              |
+|        2 | JS         |       700 |         20 | 4              |
+|        3 | PHP        |       800 |         15 | 5              |
+|        4 | JEE        |      1000 |         25 | 7              |
++----------+------------+-----------+------------+----------------+
+4 rows in set (0.00 sec)
+
+/*========= step 2: Update Fees of course. ============*/
+mysql> select * from course;
++----------+------------+-----------+------------+----------------+
+| courseId | courseName | coursefee | courseSeat | courseDuration |
++----------+------------+-----------+------------+----------------+
+|        1 | Java       |      1500 |         20 | 6              |
+|        2 | JS         |      2000 |         20 | 4              |
+|        3 | PHP        |       800 |         15 | 5              |
+|        4 | JEE        |      1000 |         25 | 7              |
++----------+------------+-----------+------------+----------------+
+4 rows in set (0.00 sec)
+
+mysql> select * from course;
++----------+------------+-----------+------------+----------------+
+| courseId | courseName | coursefee | courseSeat | courseDuration |
++----------+------------+-----------+------------+----------------+
+|        1 | Java       |      1500 |         20 | 6              |
+|        2 | JS         |      3000 |         20 | 4              |
+|        3 | PHP        |       800 |         15 | 5              |
+|        4 | JEE        |      1000 |         25 | 7              |
++----------+------------+-----------+------------+----------------+
+4 rows in set (0.00 sec)
+
+/*========= step 3: Delete a course from any Training session ============*/
+
+mysql> select * from course;
++----------+------------+-----------+------------+----------------+
+| courseId | courseName | coursefee | courseSeat | courseDuration |
++----------+------------+-----------+------------+----------------+
+|        1 | Java       |      1500 |         20 | 6              |
+|        2 | JS         |      3000 |         20 | 4              |
+|        4 | JEE        |      1000 |         25 | 7              |
++----------+------------+-----------+------------+----------------+
+3 rows in set (0.00 sec)
+
+/*========== step 4: Search information about a course ============*/
+
+Search information about a course
+Enter course name or id : Java
+course [courseId=1, courseName=Java, coursefee=1500, courseSeat=20, courseDuration=6]
+
+/*============ step 5: Create Batch under a course ================*/
+
+create table batch(
+bid int primary key auto_increment,
+bname varchar(12),
+cName varchar(12),
+TotalSeats int
+);
+
+mysql> select * from batch;
++-----+--------------+-------+------------+
+| bid | bname        | cName | TotalSeats |
++-----+--------------+-------+------------+
+|   1 | Java_Morning | Java  |         10 |
+|   2 | Java_Evening | Java  |         10 |
++-----+--------------+-------+------------+
+2 rows in set (0.00 sec)
+
+/*============ step 6:Allocate students in a Batch under a course ==============*/
+create table student
+(
+stdID int primary key auto_increment,
+StdName varchar(12),
+mobile varchar(12),
+email varchar(15),
+password varchar(10)
+);
+
+mysql> select * from student;
++-------+---------+------------+-----------+----------+
+| stdID | StdName | mobile     | email     | password |
++-------+---------+------------+-----------+----------+
+|     1 | Koti    | 9014595789 | Koti@143  | 7979     |
+|     2 | Divya   | 9014578789 | Divya@143 | 4949     |
+|     3 | Krish   | 7985486859 | Krish@123 | 7777     |
++-------+---------+------------+-----------+----------+
+3 rows in set (0.00 sec)
+
+create table studentdto(
+courseId int,
+stdID int,
+foreign key (courseId) references course(courseId),
+foreign key (stdID) references student(stdID)
+);
+
+create table Java_Morning (
+bname varchar(12),
+courseName varchar(12),
+courseId int ,
+stdID int
+);
+
+mysql> select * from Java_Morning;
++--------------+------------+----------+-------+
+| bname        | courseName | courseId | stdID |
++--------------+------------+----------+-------+
+| Java_Morning | Java       |        1 |     1 |
+| Java_Morning | Java       |        1 |     2 |
++--------------+------------+----------+-------+
+2 rows in set (0.00 sec)
+
+/*============ step 7:Update total seats of a batch ==============*/
+mysql> select * from batch;
++-----+--------------+-------+------------+
+| bid | bname        | cName | TotalSeats |
++-----+--------------+-------+------------+
+|   1 | Java_Morning | Java  |         20 |
+|   2 | Java_Evening | Java  |         10 |
++-----+--------------+-------+------------+
+2 rows in set (0.00 sec)
+
+/*============ step 8:View the students of every batch ==============*/
+View the students of every batch
+Enter Course Name
+Java
+Course ID :1
+Course Name :Java
+Course Fees :2
+Student stdID :2
+Student User Name :Divya@143
+Student Name :Divya
+Student Mobile :9014578789
+=========================================
+Course ID :1
+Course Name :Java
+Course Fees :1
+Student stdID :2
+Student User Name :Divya@143
+Student Name :Divya
+Student Mobile :9014578789

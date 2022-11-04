@@ -35,8 +35,6 @@ public class Demo {
 			String pass = sc.next();
 
 			AdminDao all = new AdminDaoImple();
-//			String code = all.loginHod(user, pass);			
-//			if(code.equalsIgnoreCase("0011")) {
 			boolean status = true;
 			while (status) {
 				System.out.println("\n Choose Option only press Number.. \n");
